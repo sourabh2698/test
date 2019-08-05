@@ -11,7 +11,7 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({ loading: true })
-    fetch("https://www.anapioficeandfire.com/api/characters?page=10&pageSize=1000")
+    fetch("https://www.anapioficeandfire.com/api/characters?page=20&pageSize=1000000")
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -23,22 +23,22 @@ class App extends Component {
 
   render() {
     var { loading, character } = this.state;
+    
+      return (
+        <div>
+          <ul>
+            {character.map(character => (
+              <li >
+               {this.state.loading ? "loading..." : character.name}
 
-    return (
-      <div>
-        <ul>
-          {character.map(character => (
-            <li >
-              {this.state.loading ? "loading..." :<a href='https://www.anapioficeandfire.com/api/characters/823'>{ character.name}</a>}
-
-            </li>
-          ))}
+              </li>
+            ))}
         </ul>
 
-      </div>
-    );
+        </div>
+      );
+    }
   }
-}
-
+ 
 
 export default App
